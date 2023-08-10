@@ -40,7 +40,7 @@ const Register = asyncHandler(async (req,res) => {
     password: hashpassword
   })
 
-  console.log(user)
+
 
   if (user) {
     res.status(201)
@@ -90,11 +90,7 @@ const GetUser = asyncHandler(async (req,res) => {
 
   const user = await User.find({ username: req.params.username })
 
-
-
   const links = await Link.find({ user: user[0]._id })
-
-
 
   if (user) {
     res.status(200).json({
@@ -150,13 +146,10 @@ const getLink = asyncHandler(async (req,res) => {
     )
   }
 
-  console.log("getLinks")
 })
 
 const AddLink = asyncHandler(async (req,res) => {
   const { platform,url } = req.body
-
-  console.log(req.body)
 
   if (!platform || !url) {
     throw new Error("Please add all the fields")
